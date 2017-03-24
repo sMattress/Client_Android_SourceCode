@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 透明灰 -->
+    <color name="bg_blue_grey">#a0193b6f</color>
+    <color name="bg_blue">#193b6f</color>
+    <color name="text_grey">#3B3B3B</color>
+    <color name="white">#FFFFFF</color>
+    <!-- 白色 -->
+    <color name="black">#000000</color>
+    <!-- 黑色 -->
+    <color name="blue">#4bc1d2</color>
+    <!-- 蓝色 -->
+    <color name="grey">#333333</color>
+    <!-- 灰色 -->
+    <color name="background_grey">#ededed</color>
+    <!-- 背景灰 -->
+    <color name="green">#22c064</color>
+    <!-- 浅度绿色 -->
+    <color name="deep">#1352e2</color>
+    <!-- 深度蓝色 -->
+    <color name="dream">#f7941d</color>
+    <!-- 做梦黄色 -->
+    <color name="wake">#e0483e</color>
+    <!-- 醒来红色 -->
+    <!-- 绿色 -->
+    <color name="light">#f96538</color>
+    <!-- 浅 -->
+    <color name="light_grey">#D5D5D5</color>
+    <!-- 浅灰 -->
+    <color name="dark_grey">#8c8c8c</color>
+    <!-- 深灰 -->
+    <color name="character_grey">#232323</color>
+    <!-- 字灰色 -->
+    <color name="dark_white">#f8f8f8</color>
+    <!-- 深白色 -->
+    <color name="dark_blue">#1352e2</color>
+    <!-- 深白色 -->
+    <color name="line_grey">#c2c2c2</color>
+    <!-- 分割线灰色 -->
+    <color name="bt_bg">#6699cc</color>
+    <!-- 分割线灰色 -->
+    <color name="light_blue">#BBFFFF</color>
+    <!-- 分割线灰色 -->
+    <color name="transparent">#00000000</color>
+    <color name="score">#827568</color>
+    <!-- 菜单栏字体 -->
+    <color name="main_text_grey">#4C5467</color>
+
+    <color name="light_theme">#FFFFCC</color>
+
+    <color name="red">#FF0000</color>
+    <color name="yellow">#FFFF00</color>
+
+    <color name="bg_dark_grey">#494B51</color>
+    <color name="bg_dark_brown">#79603B</color>
+    <color name="bg_dark_blue">#3C5D65</color>
+
+    <color name="bg_heating_off">#a079603B</color>
+
+    <color name="light_green">#8EBE2C</color>
+
+    <color name="bg_therapy_off">#a03C5D65</color>
+
+    <color name="black_transparent">#a0000000</color>
+
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_points">#c099cc00</color>
+
+    <color name="grey_text">#9b9b9b</color>
+
+
+
+</resources>

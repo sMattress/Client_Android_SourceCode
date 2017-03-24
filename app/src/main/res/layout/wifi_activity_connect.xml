@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/device_title"
+        layout="@layout/title" />
+    <!--<FrameLayout
+        android:id="@+id/body_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/device_title" />-->
+
+    <fragment
+        android:layout_below="@id/device_title"
+        android:id="@+id/id_wifi_fragement"
+        android:name="com.wtf.fragment.WifiFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</RelativeLayout>

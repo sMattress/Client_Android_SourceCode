@@ -1,0 +1,102 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light.NoTitleBar">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="textAppearanceBaseContent" parent="@android:style/TextAppearance.Small.Inverse" />
+
+    <style name="progress_horizontal_my">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_horizontal_my</item><!-- progress_horizontal -->
+        <item name="android:indeterminateDrawable">@color/grey</item>
+        <item name="android:minHeight">4dip</item>
+        <item name="android:maxHeight">4dip</item>
+    </style>
+
+    <style name="wheelViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="itemNumber">3</item>
+        <item name="lineColor">@color/transparent</item>
+        <item name="bottomLineColor">#ffdadada</item>
+        <item name="lineHeight">1dp</item>
+        <item name="firstLineAndSecondLineSpace">3dp</item>
+        <item name="maskHeight">10dp</item>
+        <item name="noEmpty">true</item>
+        <item name="normalTextColor">@color/grey_text</item>
+        <item name="normalTextSize">14sp</item>
+        <item name="selectedTextColor">#ffffff</item>
+        <item name="selectedTextSize">18sp</item>
+        <item name="unitHeight">25dp</item>
+        <item name="android:background">@color/transparent</item>
+
+    </style>
+
+
+    <style name="PlatformDialog" parent="android:Theme.Dialog"/>
+
+    <style name="textAppearance">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/light_grey</item>
+
+       <!-- android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"-->
+    </style>
+
+    <style name="tabTextAppearance">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">14sp</item>
+
+        <!-- android:layout_marginTop="5dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textColor="@color/white"
+         android:layout_gravity="center_horizontal"
+         android:textSize="20dp"-->
+    </style>
+
+    <style name="ResultButton" parent="@android:style/Widget.Holo.Button.Borderless.Small">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--把窗体背景改为启动页的图片，这样就解决了闪屏的问题-->
+        <item name="android:windowBackground">@drawable/ic_welcome</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">false</item>
+        <!--一定要，否则有状态栏显示，不能全屏-->
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme1">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+</resources>

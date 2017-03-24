@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    android:orientation="vertical">
+
+   <!-- <include layout="@layout/main_title" />-->
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.wtf.ui.RefreshLayout
+                android:id="@+id/pull_to_refresh"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:id="@+id/sv_constant"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/dimen_20">
+
+                                    <TextView
+                                        android:id="@+id/tv_tmp_info"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@mipmap/circle"
+                                        android:gravity="center"
+                                        android:text="@string/constant_heating_tmp"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="@dimen/dimen_10">
+
+                                        <ImageView
+                                            android:id="@+id/iv_tmp_cancel"
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/cancel_icon"
+                                            android:visibility="gone" />
+
+                                        <TextView
+                                            android:id="@+id/tv_tmp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="end"
+                                            android:layout_marginLeft="@dimen/dimen_20"
+                                            android:text="35℃"
+                                            android:textColor="@color/dark_grey"
+                                            android:textSize="33sp" />
+
+
+                                        <ImageView
+                                            android:id="@+id/iv_tmp_minus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="@dimen/dimen_30"
+                                            android:layout_toRightOf="@id/tv_tmp"
+                                            android:src="@mipmap/button_minus_light" />
+
+                                        <ImageView
+                                            android:id="@+id/iv_tmp_plus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="@dimen/dimen_10"
+                                            android:layout_toRightOf="@id/iv_tmp_minus"
+                                            android:src="@mipmap/button_plus_light" />
+
+                                        <View
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="1dp"
+                                            android:layout_below="@id/tv_tmp"
+                                            android:layout_marginTop="@dimen/dimen_5"
+                                            android:background="@mipmap/line_short" />
+
+
+                                    </RelativeLayout>
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/dimen_20">
+
+                                    <TextView
+                                        android:id="@+id/tv_open_time_info"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@mipmap/circle"
+                                        android:ems="1"
+                                        android:gravity="center"
+                                        android:text="@string/open_time"
+                                        android:textColor="@color/white"
+                                        android:textSize="17sp" />
+                                        <com.wtf.ui.time_picker.WLQQTimePicker
+                                            android:id="@+id/time_picker"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dimen_20"
+                                            android:gravity="center"
+                                            android:layout_gravity="center_vertical"/>
+                                </LinearLayout>
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/dimen_30" >
+
+                                    <TextView
+                                        android:id="@+id/tv_tmp_control"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+
+                                        android:background="@mipmap/circle"
+                                        android:ems="1"
+                                        android:gravity="center"
+                                        android:text="@string/tmp_control"
+                                        android:textColor="@color/white"
+                                        android:textSize="17sp" />
+
+
+
+
+                                    <ToggleButton
+                                        android:id="@+id/tb_tmp_control"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignTop="@id/tv_tmp_control"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="20dp"
+                                        android:background="@android:color/transparent"
+                                        android:button="@drawable/toggle_btn"
+                                        android:checked="false"
+                                        android:text=""
+                                        android:textOff=""
+                                        android:textOn="" />
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/tb_tmp_control"
+                                        android:src="@mipmap/line_broken"
+                                        android:layout_toRightOf="@id/tv_tmp_control"
+                                        android:layout_margin="@dimen/dimen_10"/>
+
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/iv_heating_off"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clickable="true"
+                                android:src="@color/bg_blue_grey"
+                                android:visibility="gone">
+
+                            </ImageView>
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                </ScrollView>
+            </com.wtf.ui.RefreshLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/constant_load_progress"
+                layout="@layout/load_progress"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,202 @@
+<resources>
+    <string name="app_name">智能床垫</string>
+    <string name="icon_setting">设置</string>
+    <string name="icon_knowledge">帮助</string>
+    <string name="icon_personage">我</string>
+    <string name="user_name">用户名</string>
+    <string name="user_setting">个人设置</string>
+    <string name="device_manage">设备管理</string>
+    <string name="version">检测更新</string>
+    <string name="user_exit">退出登录</string>
+    <string name="enhance">理疗预约</string>
+    <string name="constant">加热预约</string>
+    <string name="common">远程控制</string>
+
+
+    <!--  title  -->
+    <string name="mm_device_title">妈妈的床</string>
+    <string name="device_title">主卧室床</string>
+    <string name="left_side">左侧</string>
+    <string name="right_side">右侧</string>
+    <string name="target_tmp">目标温度：</string>
+    <string name="current_mode">当前状态：</string>
+
+    <!--  common  -->
+    <string name="heating">加热</string>
+    <string name="therapy">理疗</string>
+    <string name="tmp">温度</string>
+    <string name="time">时间</string>
+
+    <!--constant-->
+    <string name="constant_heating_tmp">加热温度</string>
+    <string name="protect_time">安全保护时间</string>
+    <string name="open_time">预约开机时间</string>
+    <string name="tmp_control">智能温度曲线</string>
+
+    <!--   Enhance   -->
+    <string name="enhance_info">在预约时段内床垫会时刻待命，若您躺在床上，加强理疗会自动开始</string>
+    <string name="enhance_order_time">允许理疗时间段</string>
+    <string name="enhance_time">理疗时长</string>
+
+    <!--info-->
+    <string name="heating_info">请选择您希望加热的温度</string>
+    <string name="protect_time_info">超过此时间系统不再加热</string>
+    <string name="smart_tmp_control">可以智能控温</string>
+    <string name="open_time_info">床垫在此时间点自动加热</string>
+    <string name="therapy_time_info">床垫在此时间点自动加热</string>
+    <string name="therapy_allow_time_info">在此时间段内，若您在床垫上，床垫则会自动开启理疗模式</string>
+
+
+    <!-- 下拉刷新中相关文字 -->
+    <string name="pull_to_refresh_header_time">最近更新：</string>
+    <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">松开后刷新</string>
+    <string name="pull_to_refresh_refreshing_label">正在刷新\u2026</string>
+    <string name="pull_to_refresh_footer_release_label">松开后加载</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
+    <string name="pull_to_refresh_footer_refreshing_label">加载中\u2026</string>
+    <string name="tv_refresh">请刷新</string>
+    <string name="confirm">确定</string>
+
+    <string name="forget_tv_pwd">忘记密码？</string>
+    <string name="reset_pwd">重置密码</string>
+    <string name="userlogin">用户登录</string>
+    <string name="login">登&#160;&#160;&#160;&#160;录</string>
+    <string name="login_register">立即注册</string>
+    <string name="login_tv_new">还没有账号？</string>
+    <string name="phone_num">手机号</string>
+    <string name="nickname">昵称</string>
+    <string name="user_password">密码:首位需为字母，长度为8位及以上</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="login_edit_name">手机号</string>
+    <string name="code_num">验证码</string>
+    <string name="get_code">获&#160;&#160;&#160;&#160;&#160;&#160;取</string>
+    <string name="find">找&#160;&#160;&#160;&#160;回</string>
+    <string name="find_pwd">重置密码</string>
+
+    <string name="change_pwd">修改密码</string>
+    <string name="pwd">当前密码</string>
+    <string name="newpwd">新密码</string>
+    <string name="pwdagain">确认新密码</string>
+
+    <string name="new_pwd">新密码</string>
+
+    <string name="revise">修&#160;&#160;&#160;&#160;改</string>
+    <string name="reset">重&#160;&#160;&#160;&#160;置</string>
+    <string name="retrieve_pwd">找回密码</string>
+
+    <string name="register">注&#160;&#160;&#160;&#160;册</string>
+    <string name="register_tv_title">用户注册</string>
+
+    <!-- 二维码相关文字 -->
+    <string name="msg_default_status">请将二维码置于取景框内扫描。</string>
+    <string name="msg_default_format">设备号：</string>
+    <string name="button_custom_product_search">重新扫描</string>
+    <string name="result_text">找到设备号</string>
+    <string name="msg_camera_framework_bug">相机出现问题，你可能需要重启设备。</string>
+    <string name="button_ok">确定</string>
+
+    <!--版本升级-->
+    <string name="settings_tv_update">版本更新</string>
+    <string name="settings_tv_check">检查新版本</string>
+    <string name="settings_tv_version">已是最新版本</string>
+    <string name="settings_tv_intro">功能介绍</string>
+    <string name="settings_tv_title">设置</string>
+    <string name="dialog_tv_title">正在更新\u2026</string>
+    <string name="dialog_btn_cancel">取消下载</string>
+    <!--设备号-->
+    <string name="device_1">1067017059</string>
+    <string name="device_2">1066742019</string>
+    <string name="device_3">MockHardware_V2_2</string>
+
+
+    <string name="user_info">你的信息</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="edit_btn_save">保&#160;&#160;&#160;&#160;存</string>
+    <string name="edit_tv_title">修改信息</string>
+
+    <string name="user_image">头像</string>
+    <string name="sex">性别</string>
+    <string name="birthday">出生日期</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="picker_title">%1$s  :  %2$s</string>
+
+    <!--WIFI相关文字-->
+    <string name="toastFailed">Failed!</string>
+    <string name="buttonOp">More&#8230;</string>
+
+    <!-- For Simple Config Layout Interface -->
+    <string name="wifi_scan">Wi-Fi Network</string>
+    <string name="pin_text">PIN</string>
+    <string name="qrcode_desc">QRCode</string>
+    <string name="qrcode_title">QRCode Scan</string>
+    <string name="qrcode_cancel">取消</string>
+    <string name="start_config">开始</string>
+    <string name="stop_config">Press to Stop</string>
+
+    <!-- For Simple Control Layout Interface -->
+    <string name="dev_discovery">Connected Device</string>
+    <string name="rename_dev">Rename Device</string>
+    <string name="del_prof">Remove Device</string>
+
+    <!-- Button label to connect to a wifi network-->
+    <string name="connect">Connect</string>
+    <string name="cancel">Cancel</string>
+    <!--  !!!!!!!! vpn_connect_toTitle of VPN connect dialog -->
+    <string name="wifi_connect_to">Connect to %s</string>
+    <!-- Wi-Fi IP address label -->
+    <string name="ip_address">IP address</string>
+    <!-- Label for the signal strength -->
+    <string name="signal">Signal strength</string>
+
+    <!-- Button caption to forget a wifi network -->
+    <string name="forget_network">Forget</string>
+    <!-- Label for status of connection -->
+    <string name="wifi_status">Status</string>
+    <!--Wi-Fi settings screen, summary text for network when connected -->
+    <string name="status_connected">Connected</string>
+    <string name="status_connecting">Connecting&#8230;</string>
+    <!-- Label for link speed (wifi) -->
+    <string name="wifi_link_speed">Speed</string>
+    <!-- Verbose wifi signal strength.  This is the best out of 4 levels. -->
+    <string name="wifi_signal_3">Excellent</string>
+    <!-- Verbose wifi signal strength.  This is the 2nd best out of 4 levels. -->
+    <string name="wifi_signal_2">Good</string>
+    <!-- Verbose wifi signal strength.  This is the 3rd best out of 4 levels. -->
+    <string name="wifi_signal_1">Fair</string>
+    <!-- Verbose wifi signal strength.  This is the worst out of 4 levels. -->
+    <string name="wifi_signal_0">Poor</string>
+    <!-- Label for the security of a wifi network -->
+    <string name="security">Security</string>
+    <!-- Value for the wifi security.  This means no encryption. -->
+    <string name="wifi_security_open">Open</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_wep">WEP</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_wpa">WPA</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_wpa2">WPA2</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_wpa_eap">WPA-EAP</string>
+    <!-- Value for the wifi security -->
+    <string name="wifi_security_ieee8021x">IEEE8021X</string>
+
+
+    <string name="please_type_passphrase">Wireless password</string>
+    <string name="wifi_show_password">显示密码</string>
+
+    <string name="wifi_change_password">Change password</string>
+    <string name="button_change_password">Modify</string>
+    <!-- An edit field's grayed out value when it has not been modified -->
+    <string name="wifi_password_unchanged">(unchanged)</string>
+    <!-- Button caption to save a configuration wifi -->
+    <string name="wifi_save_config">Save</string>
+
+    <string name="adhoc_not_supported_yet">AdHoc is not supported by Android platform yet!</string>
+
+    <string name="dummy_content_description">""</string>
+
+</resources>

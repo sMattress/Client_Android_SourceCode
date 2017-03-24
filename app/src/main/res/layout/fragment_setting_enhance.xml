@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/main_title" />-->
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <com.wtf.ui.RefreshLayout
+                android:id="@+id/pull_to_refresh"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:id="@+id/sv_enhance"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent">
+
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/dimen_20">
+
+                                    <TextView
+                                        android:id="@+id/tv_time_info"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@mipmap/circle"
+                                        android:gravity="center"
+                                        android:text="@string/enhance_time"
+                                        android:textColor="@color/white"
+                                        android:textSize="17sp" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+                                        <ImageView
+                                            android:id="@+id/iv_time_cancel"
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:src="@drawable/cancel_icon"
+                                            android:visibility="gone"
+                                            android:layout_margin="@dimen/dimen_10"/>
+
+                                        <TextView
+                                            android:id="@+id/tv_time"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="end"
+                                            android:layout_marginLeft="@dimen/dimen_5"
+                                            android:text="145min"
+                                            android:textColor="@color/dark_grey"
+                                            android:textSize="33sp" />
+
+
+                                        <ImageView
+                                            android:id="@+id/iv_time_minus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="@dimen/dimen_10"
+                                            android:layout_toRightOf="@id/tv_time"
+                                            android:src="@mipmap/button_minus_light" />
+
+                                        <ImageView
+                                            android:id="@+id/iv_time_plus"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="@dimen/dimen_10"
+                                            android:layout_toRightOf="@id/iv_time_minus"
+                                            android:src="@mipmap/button_plus_light" />
+
+                                        <View
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="1dp"
+                                            android:layout_below="@id/tv_time"
+                                            android:layout_marginTop="@dimen/dimen_5"
+                                            android:background="@mipmap/line_short" />
+
+
+                                    </RelativeLayout>
+
+
+                                </LinearLayout>
+
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/dimen_20">
+
+
+
+                                    <TextView
+                                        android:id="@+id/tv_allow_time_info"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@mipmap/circle"
+                                        android:gravity="center"
+                                        android:text="@string/enhance_order_time"
+                                        android:textColor="@color/white"
+                                        android:ems="1"
+                                        android:textSize="17sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_tmp_control"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dimen_10"
+                                        android:layout_marginRight="@dimen/dimen_10"
+                                        android:gravity="center"
+                                        android:text="@string/enhance_info"
+                                        android:textColor="@color/white"
+                                        android:textSize="13sp"
+                                        android:layout_gravity="center_vertical"/>
+
+
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dimen_10"
+                                    android:layout_marginRight="@dimen/dimen_10">
+
+                                    <include layout="@layout/dividing_rule" />
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/iv_therapy_off"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:clickable="true"
+                                android:src="@color/bg_blue_grey"
+                                android:visibility="visible">
+
+                            </ImageView>
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+            </com.wtf.ui.RefreshLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <include
+            android:id="@+id/enhance_load"
+            layout="@layout/load_progress"
+            android:visibility="gone" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

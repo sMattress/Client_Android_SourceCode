@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/edit_title"
+        layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_title"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_change_info"
+            android:layout_width="match_parent"
+            android:layout_height="100dip"
+            android:background="@drawable/content_bg"
+            android:gravity="top|left"
+            android:padding="10dp"
+            android:textColor="@color/character_grey"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_grey" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_change_info"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/green"
+        android:text="@string/edit_btn_save"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>

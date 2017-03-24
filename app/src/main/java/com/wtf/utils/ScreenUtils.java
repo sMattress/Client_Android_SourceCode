@@ -1,0 +1,63 @@
+package com.wtf.utils;
+
+import android.content.Context;
+import android.util.DisplayMetrics;
+
+public class ScreenUtils {
+    private static int screenW;
+    private static int screenH;
+    private static float screenDensity;
+    public static int getScreenW(Context context){
+        if (screenW == 0){
+            initScreen(context);
+        }
+        return screenW;
+    }
+
+    public static int getScreenH(Context context){
+        if (screenH == 0){
+            initScreen(context);
+        }
+        return screenH;
+    }
+
+    public static float getScreenDensity(Context context){
+        if (screenDensity == 0){
+            initScreen(context);
+        }
+        return screenDensity;
+    }
+
+    private static void initScreen(Context context){
+        DisplayMetrics metric = context.getResources().getDisplayMetrics();
+        screenW = metric.widthPixels;
+        screenH = metric.heightPixels;
+        screenDensity = metric.density;
+    }
+
+    /** 根据手机的分辨率从 dp 的单位 转成为 px(像素) */
+    public static int dp2px(Context context, float dpValue) {
+        return (int) (dpValue * getScreenDensity(context) + 0.5f);
+    }
+
+    /** 根据手机的分辨率从 px(像素) 的单位 转成为 dp */
+    public static int px2dp(Context context, float pxValue) {
+        return (int) (pxValue / getScreenDensity(context) + 0.5f);
+    }
+
+    public static int resizeTextSize(Context context,int textSize){
+        float ratio =  1;
+        if(screenW==0||screenH==0){
+            initScreen(context);
+        }
+        //System.out.println("w...."+screenW+"h....."+screenH);
+        try {
+            float ratioWidth = (float)screenW / 480;
+            float ratioHeight = (float)screenH / 800;
+            ratio = Math.min(ratioWidth, ratioHeight);
+        } catch (Exception e) {
+        }
+
+        return Math.round(textSize * ratio);
+    }
+}

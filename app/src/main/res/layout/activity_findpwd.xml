@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/findPhoneWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20">
+
+            <EditText
+                android:id="@+id/edit_find_cellphone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="@string/phone_num"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColorHint="@color/dark_grey" />
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/line_grey" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/resetPwdWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20">
+
+            <EditText
+                android:id="@+id/edit_reset_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:hint="@string/user_password"
+                android:inputType="textPassword"
+                android:maxLength="14"
+                android:singleLine="true"
+                android:textColorHint="@color/dark_grey" />
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/line_grey" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/findCodeWrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/btn_find_code">
+
+                <EditText
+                    android:id="@+id/edit_find_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:hint="@string/code_num"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColorHint="@color/dark_grey" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_find_code"
+                android:layout_width="160dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/editbox"
+                android:onClick="getVerificationCode"
+                android:text="@string/get_code"
+                android:textColor="@color/character_grey" />
+
+            <TextView
+                android:id="@+id/tv_find_now"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
+                android:text="@string/get_code"
+                android:textColor="@color/dark_grey"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/line_grey" />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_filleted_corner"
+            android:onClick="findPwd"
+            android:text="@string/find"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+</LinearLayout>
