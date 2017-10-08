@@ -35,6 +35,7 @@ import com.wtf.model.QueryData;
 import com.wtf.ui.RefreshLayout;
 import com.wtf.ui.time_picker.WLQQTimePicker;
 import com.wtf.ui.time_picker.WheelView;
+import com.wtf.utils.WifiThread;
 
 import java.lang.ref.WeakReference;
 import java.util.Date;
@@ -378,42 +379,46 @@ public class ConstantFragment extends BaseFragment implements OnClickListener, R
             heatReservation.setAutoTemperatureControl(autoTemperatureControl);
             heatReservation.setProtectTime(protectTime);
             heatReservation.setTargetTemperature(targetTemperature);
-            new Thread(){
-                @Override
-                public void run()
-                {
-                    WTFSocketMsg updateMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(17).addParam(heatReservation));
-                    WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
-                    session1.sendMsg(updateMsg, new WTFSocketHandler() {
-                        @Override
-                        public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
-                            if (msg.getState() != 1) {
-                                constantHandler.sendEmptyMessage(5);
-                            } else {
-                                //  currentTemperature = Integer.valueOf(session.getMsg().getParams().getJSONObject(0).getString("currentTemperature"));
-                                AppMsg appMsg = msg.getBody(AppMsg.class);
-                                if (appMsg.getFlag() == 1) {
-                                    System.out.println("更新数据成功");
-                                    originalTemperature = targetTemperature;
-                                    constantHandler.sendEmptyMessage(2);
+            if (WTFSocketSessionFactory.isAvailable()) {
 
-                                } else {
-                                    System.out.println("更新数据失败");
+                new Thread() {
+                    @Override
+                    public void run() {
+                        WTFSocketMsg updateMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(17).addParam(heatReservation));
+                        WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
+                        session1.sendMsg(updateMsg, new WTFSocketHandler() {
+                            @Override
+                            public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
+                                if (msg.getState() != 1) {
                                     constantHandler.sendEmptyMessage(5);
+                                } else {
+                                    //  currentTemperature = Integer.valueOf(session.getMsg().getParams().getJSONObject(0).getString("currentTemperature"));
+                                    AppMsg appMsg = msg.getBody(AppMsg.class);
+                                    if (appMsg.getFlag() == 1) {
+                                        System.out.println("更新数据成功");
+                                        originalTemperature = targetTemperature;
+                                        constantHandler.sendEmptyMessage(2);
 
+                                    } else {
+                                        System.out.println("更新数据失败");
+                                        constantHandler.sendEmptyMessage(5);
+
+                                    }
                                 }
+                                return true;
                             }
-                            return true;
-                        }
 
-                        public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
-                            constantHandler.sendEmptyMessage(1);
-                            return true;
-                        }
-                    }, Param.TCP_TIMEOUT);
-                }
-            }.start();
+                            public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
+                                constantHandler.sendEmptyMessage(1);
+                                return true;
+                            }
+                        }, Param.TCP_TIMEOUT);
+                    }
+                }.start();
 
+            }else {
+                constantHandler.sendEmptyMessage(6);
+            }
         }
     }
 
@@ -439,43 +444,45 @@ public class ConstantFragment extends BaseFragment implements OnClickListener, R
             queryData = new QueryData();
             queryData.setSide(side);
             System.out.println("side:" + side);
-            new Thread(){
-                @Override
-                public void run()
-                {
-                    WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().addParam(queryData).setCmd(33));
+            if(WTFSocketSessionFactory.isAvailable()) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().addParam(queryData).setCmd(33));
 
-                    WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
-                    session1.sendMsg(currentMsg, new WTFSocketHandler() {
-                        @Override
-                        public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
-                            if (msg.getState() != 1) {
-                                constantHandler.sendEmptyMessage(5);
-                            } else {
-                                //  currentTemperature = Integer.valueOf(session.getMsg().getParams().getJSONObject(0).getString("currentTemperature"));
-                                AppMsg appMsg = msg.getBody(AppMsg.class);
-
-                                if (appMsg.getFlag() == 1) {
-                                    //System.out.println("获取数据成功");
-                                    packet = appMsg.getParams().getString(0);
-                                    constantHandler.sendEmptyMessage(0);
-                                } else {
-                                    //System.out.println("获取数据失败");
+                        WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
+                        session1.sendMsg(currentMsg, new WTFSocketHandler() {
+                            @Override
+                            public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
+                                if (msg.getState() != 1) {
                                     constantHandler.sendEmptyMessage(5);
+                                } else {
+                                    //  currentTemperature = Integer.valueOf(session.getMsg().getParams().getJSONObject(0).getString("currentTemperature"));
+                                    AppMsg appMsg = msg.getBody(AppMsg.class);
 
+                                    if (appMsg.getFlag() == 1) {
+                                        //System.out.println("获取数据成功");
+                                        packet = appMsg.getParams().getString(0);
+                                        constantHandler.sendEmptyMessage(0);
+                                    } else {
+                                        //System.out.println("获取数据失败");
+                                        constantHandler.sendEmptyMessage(5);
+
+                                    }
                                 }
+                                return true;
                             }
-                            return true;
-                        }
 
-                        public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
-                            constantHandler.sendEmptyMessage(1);
-                            return true;
-                        }
-                    }, Param.TCP_TIMEOUT);
-                }
-            }.start();
-
+                            public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
+                                constantHandler.sendEmptyMessage(1);
+                                return true;
+                            }
+                        }, Param.TCP_TIMEOUT);
+                    }
+                }.start();
+            }else {
+                constantHandler.sendEmptyMessage(6);
+            }
         }
     }
 
@@ -583,6 +590,12 @@ public class ConstantFragment extends BaseFragment implements OnClickListener, R
                     break;
                 case 5:
                     theFragment.load_progress.setVisibility(View.GONE);
+                    theFragment.showToast("床垫还未连上服务器，请耐心等待");
+                    break;
+                case 6:
+                    theFragment.load_progress.setVisibility(View.GONE);
+                    WifiThread wifiThread=new WifiThread();
+                    wifiThread.start();
                     theFragment.showToast("床垫还未连上服务器，请耐心等待");
                     break;
             }

@@ -6,17 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.wifi.SupplicantState;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,27 +21,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONObject;
 import com.wtf.R;
 import com.wtf.WTFApplication;
 import com.wtf.fragment.DeviceFragment;
 import com.wtf.fragment.HelpFragment;
 import com.wtf.fragment.PersonageFragment;
 import com.wtf.fragment.SettingFragment;
-import com.wtf.model.AppMsg;
-import com.wtf.model.Param;
 import com.wtf.ui.UpdateDialog;
-import com.wtf.utils.ConnectDirect;
-import com.wtf.utils.HttpUtil;
-import com.wtf.utils.NetWorkStateReceiver;
 import com.wtf.utils.SocketConnection;
+import com.wtf.utils.WifiThread;
 
 import java.lang.ref.WeakReference;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
 
-import wtf.socket.*;
+import wtf.socket.WTFSocketSessionFactory;
 
 
 public class MainActivity extends FragmentActivity implements
@@ -84,7 +72,7 @@ public class MainActivity extends FragmentActivity implements
     private MainHandler mainHandler;
     public static MainActivity MainActivity;
 
-    public static boolean breinit = false;
+    public boolean breinit = false;
     private IntentFilter intentFilter;
 
     @Override
@@ -107,20 +95,14 @@ public class MainActivity extends FragmentActivity implements
 
         initViews();
 
-            new Thread() {
-                @Override
-                public void run() {
-                    SocketConnection.registerSocket();
-                }
-            }.start();
         wifiReceiver = new WIFIReceiver();
         IntentFilter filter = new IntentFilter();
-       // filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        // filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         //filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         //filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         //filter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
-       // filter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
+        // filter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         registerReceiver(wifiReceiver, filter);
 
     }
@@ -359,50 +341,30 @@ public class MainActivity extends FragmentActivity implements
         setTabSelection(selectionState);
     }
 
-    class NetworkChangeReceive extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-           /* if(MainActivity.breinit == true) {
-                if (WTFApplication.isConnectingToInternet()) {
-                    WTFSocketSessionFactory.reInit();
-                } else {
-                    Toast.makeText(MainActivity.this, "网络不可用", Toast.LENGTH_SHORT).show();
-                }
-            }
-            MainActivity.breinit = true;*/
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (wifiReceiver!=null){
+        if (wifiReceiver != null) {
             unregisterReceiver(wifiReceiver);
             wifiReceiver = null;
         }
     }
 
-
-
     private class WIFIReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // 判断网络连接
-            ConnectDirect cd = new ConnectDirect(context);
-            Boolean isInternetPresent = cd.isConnectingToInternet();
-            if (!isInternetPresent) {
-                /*Toast.makeText(context, "未检测到网络，请打开网络连接",
-                        Toast.LENGTH_SHORT).show();*/
-            }else{
-                new Thread() {
+            //if (WTFSocketSessionFactory.isAvailable()) {
+                System.out.println("this is me");
+                if (WTFApplication.isConnectingToInternet()) {
+                    Thread wifiThread = new WifiThread();
+                    wifiThread.start();
+                } else {
+                    Toast.makeText(MainActivity.this, "网络不可用", Toast.LENGTH_SHORT).show();
+                }
+          //  }
 
-                    @Override
-                    public void run() {
-                        SocketConnection.registerSocket();
-                    }
-                }.start();
-            }
         }
     }
+
+
 }

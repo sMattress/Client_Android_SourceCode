@@ -31,6 +31,7 @@ import com.wtf.model.Param;
 import com.wtf.model.QueryData;
 import com.wtf.model.Switch;
 import com.wtf.ui.RefreshLayout;
+import com.wtf.utils.WifiThread;
 
 import java.lang.ref.WeakReference;
 import java.util.Date;
@@ -267,48 +268,49 @@ public class CommonFragment extends BaseFragment implements OnClickListener, Ref
 
             queryData = new QueryData();
             queryData.setSide(DOUBLE_SIDE);
+            if(WTFSocketSessionFactory.isAvailable()) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().addParam(queryData).setCmd(32));
 
-            new Thread(){
-                @Override
-                public void run()
-                {
-                    WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().addParam(queryData).setCmd(32));
+                        Log.d("Common", "registerSocket");
 
-                    Log.d("Common","registerSocket");
-                    //SocketConnection.registerSocket();
-
-                    WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
-                    session1.sendMsg(currentMsg, new WTFSocketHandler() {
-                        @Override
-                        public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
-                            if (msg.getState() != 1) {
-                                commonHandler.sendEmptyMessage(5);
-                            } else {
-                                AppMsg appMsg = msg.getBody(AppMsg.class);
-
-                                if (appMsg.getFlag() == 1) {
-                                    //System.out.println("获取数据成功");
-                                    currentState[LEFT_SIDE] = JSON.parseObject(appMsg.getParams().getString(LEFT_SIDE),
-                                            CurrentState.class);
-                                    currentState[RIGHT_SIDE] = JSON.parseObject(appMsg.getParams().getString(RIGHT_SIDE),
-                                            CurrentState.class);
-                                    swicthState = JSON.parseObject(appMsg.getParams().getString(2), Switch.class);
-                                    commonHandler.sendEmptyMessage(0);
-                                } else {
+                        WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
+                        session1.sendMsg(currentMsg, new WTFSocketHandler() {
+                            @Override
+                            public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
+                                if (msg.getState() != 1) {
                                     commonHandler.sendEmptyMessage(5);
-                                }
-                            }
-                            return true;
-                        }
+                                } else {
+                                    AppMsg appMsg = msg.getBody(AppMsg.class);
 
-                        @Override
-                        public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
-                            commonHandler.sendEmptyMessage(1);
-                            return true;
-                        }
-                    }, Param.TCP_TIMEOUT);
-                }
-            }.start();
+                                    if (appMsg.getFlag() == 1) {
+                                        //System.out.println("获取数据成功");
+                                        currentState[LEFT_SIDE] = JSON.parseObject(appMsg.getParams().getString(LEFT_SIDE),
+                                                CurrentState.class);
+                                        currentState[RIGHT_SIDE] = JSON.parseObject(appMsg.getParams().getString(RIGHT_SIDE),
+                                                CurrentState.class);
+                                        swicthState = JSON.parseObject(appMsg.getParams().getString(2), Switch.class);
+                                        commonHandler.sendEmptyMessage(0);
+                                    } else {
+                                        commonHandler.sendEmptyMessage(5);
+                                    }
+                                }
+                                return true;
+                            }
+
+                            @Override
+                            public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
+                                commonHandler.sendEmptyMessage(1);
+                                return true;
+                            }
+                        }, Param.TCP_TIMEOUT);
+                    }
+                }.start();
+            }else {
+                commonHandler.sendEmptyMessage(6);
+            }
 
         }
     }
@@ -332,39 +334,41 @@ public class CommonFragment extends BaseFragment implements OnClickListener, Ref
             currentState[RIGHT_SIDE].setMode(Mode[RIGHT_SIDE]);
             currentState[RIGHT_SIDE].setSide(RIGHT_SIDE);
 
-            new Thread(){
-                @Override
-                public void run()
-                {
-                    WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(16).addParam(currentState[RIGHT_SIDE]).addParam(currentState[LEFT_SIDE]));
-                    WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
-                    session1.sendMsg(currentMsg, new WTFSocketHandler() {
-                        @Override
-                        public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
-                            if (msg.getState() != 1) {
-                                commonHandler.sendEmptyMessage(5);
-                            } else {
-                                AppMsg appMsg = msg.getBody(AppMsg.class);
-
-                                if (appMsg.getFlag() == 1) {
-                                    System.out.println("更新数据成功");
-                                    commonHandler.sendEmptyMessage(2);
-                                } else {
+            if(WTFSocketSessionFactory.isAvailable()) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(16).addParam(currentState[RIGHT_SIDE]).addParam(currentState[LEFT_SIDE]));
+                        WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
+                        session1.sendMsg(currentMsg, new WTFSocketHandler() {
+                            @Override
+                            public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
+                                if (msg.getState() != 1) {
                                     commonHandler.sendEmptyMessage(5);
+                                } else {
+                                    AppMsg appMsg = msg.getBody(AppMsg.class);
+
+                                    if (appMsg.getFlag() == 1) {
+                                        System.out.println("更新数据成功");
+                                        commonHandler.sendEmptyMessage(2);
+                                    } else {
+                                        commonHandler.sendEmptyMessage(5);
+                                    }
                                 }
+                                return true;
                             }
-                            return true;
-                        }
 
-                        @Override
-                        public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
-                            commonHandler.sendEmptyMessage(3);
-                            return true;
-                        }
-                    }, Param.TCP_TIMEOUT);
-                }
-            }.start();
-
+                            @Override
+                            public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
+                                commonHandler.sendEmptyMessage(3);
+                                return true;
+                            }
+                        }, Param.TCP_TIMEOUT);
+                    }
+                }.start();
+            }else {
+                commonHandler.sendEmptyMessage(6);
+            }
         }
     }
 
@@ -380,41 +384,44 @@ public class CommonFragment extends BaseFragment implements OnClickListener, Ref
             load_progress.setVisibility(View.VISIBLE);
             //WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(20).addParam(powerOn).addParam(leftCurrentState));
             swicthState.setPowerOn(powerOn);
+            if(WTFSocketSessionFactory.isAvailable()) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(20).addParam(swicthState));
 
-            new Thread(){
-                @Override
-                public void run(){
-                    WTFSocketMsg currentMsg = new WTFSocketMsg().setBody(new AppMsg().setCmd(20).addParam(swicthState));
+                        WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
 
-                   // SocketConnection.registerSocket();
-
-                    WTFSocketSession session1 = WTFSocketSessionFactory.getSession(WTFApplication.userData.getSelDeviceName());
-
-                    session1.sendMsg(currentMsg, new WTFSocketHandler() {
-                        @Override
-                        public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
-                            if (msg.getState() != 1) {
-                                commonHandler.sendEmptyMessage(5);
-                            } else {
-                                AppMsg appMsg = msg.getBody(AppMsg.class);
-
-                                if (appMsg.getFlag() == 1) {
-                                    commonHandler.sendEmptyMessage(2);
-                                } else {
+                        session1.sendMsg(currentMsg, new WTFSocketHandler() {
+                            @Override
+                            public boolean onReceive(WTFSocketSession session, WTFSocketMsg msg) {
+                                if (msg.getState() != 1) {
                                     commonHandler.sendEmptyMessage(5);
-                                }
-                            }
-                            return true;
-                        }
+                                } else {
+                                    AppMsg appMsg = msg.getBody(AppMsg.class);
 
-                        @Override
-                        public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
-                            commonHandler.sendEmptyMessage(3);
-                            return true;
-                        }
-                    }, Param.TCP_TIMEOUT);
-                }
-            }.start();
+                                    if (appMsg.getFlag() == 1) {
+                                        commonHandler.sendEmptyMessage(2);
+                                    } else {
+                                        commonHandler.sendEmptyMessage(5);
+                                    }
+                                }
+                                return true;
+                            }
+
+                            @Override
+                            public boolean onException(WTFSocketSession session, WTFSocketMsg msg, WTFSocketException e) {
+                                System.out.println("err"+WTFSocketSessionFactory.isAvailable());
+
+                                commonHandler.sendEmptyMessage(3);
+                                return true;
+                            }
+                        }, Param.TCP_TIMEOUT);
+                    }
+                }.start();
+            }else {
+                commonHandler.sendEmptyMessage(5);
+            }
         }
     }
 
@@ -787,6 +794,13 @@ public class CommonFragment extends BaseFragment implements OnClickListener, Ref
                 case 5:
                     theFragment.load_progress.setVisibility(View.GONE);
                     theFragment.review(1);
+                    theFragment.showToast("床垫还未连上服务器，请耐心等待");
+                    break;
+                case 6:
+                    theFragment.load_progress.setVisibility(View.GONE);
+                    theFragment.review(1);
+                    WifiThread wifiThread=new WifiThread();
+                    wifiThread.start();
                     theFragment.showToast("床垫还未连上服务器，请耐心等待");
                     break;
             }

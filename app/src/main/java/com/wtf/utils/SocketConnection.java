@@ -24,7 +24,6 @@ public class SocketConnection {
 
     public static void registerSocket(){
         String localName = WTFApplication.userData.getAccount();
-        WTFSocketSessionFactory.reInit();
         if (!WTFSocketSessionFactory.isAvailable()) {
             try {
                 String ip= HttpUtil.getIP("smartmattress.lesmarthome.com");
